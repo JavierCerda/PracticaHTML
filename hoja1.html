@@ -4,9 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HOJA 1</title>
 </head>
 <body>
-    <h1> mi primera pagina </h1>
+    <header>
+        <a href="http://localhost/PracticaHTML/hoja1.html">Hoja 1</a><br>
+        <a href="http://localhost/PracticaHTML/hoja2.html">Hoja 2</a><br>
+        <a href="http://localhost/PracticaHTML/hoja3.html">Hoja 3</a><br>
+        <a href="http://localhost/PracticaHTML/hoja4.html">Hoja 4</a><br>
+        <a href="http://localhost/PracticaHTML/hoja5.html">Hoja 5</a>
+    </header>
+    <main>
+        <form action="Ej" method="get">
+            <div>
+                <p>Nombre: <input type="text" name="nombre" size="40"></p>
+            </div>
+            <div>
+                <textarea name="texto" rows="4" cols="20" placeholder="Descripción del producto"></textarea>
+            </div>
+            <div>
+                <p>Numero de serie: <input type="number" name="num_ser" size="50"></p>
+            </div>
+            <div>
+                <p>Estado:</p>
+                <input type="checkbox" name="activo">activo
+                <input type="checkbox" name="inactivo">inactivo
+            </div>
+            <div>
+                <p>Prioridad:</p>
+                <input type="radio" id="alta" name="prioridad" value="alta" />
+                <label for="alta">alta</label>
+            
+                <input type="radio" id="media" name="prioridad" value="media" />
+                <label for="media">media</label>
+            
+                <input type="radio" id="baja" name="prioridad" value="baja" />
+                <label for="baja">baja</label>
+            </div>
+        </form>
+    </main>
+    <footer></footer>
+    
 </body>
 </html>
