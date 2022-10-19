@@ -1,0 +1,12 @@
+{"Nombre":"ej","Texto":"ej","numSer":3,"estado":1,"prioridad":"alta"}
+{"Nombre":"el papa del fran","Texto":"sefsefsef","numSer":"234234","estado":"on","prioridad":"alta"}
+{"Nombre":"asdf","Texto":"sdfsdf","numSer":"4534534","estado":"on","prioridad":"media"}
+{"Nombre":"sdgfsd","Texto":"sdsdf","numSer":"42342","estado":"on","prioridad":"media"}
+{"Nombre":"1234234","Texto":"23423423","numSer":"234234","estado":null,"prioridad":"media"}
+{"Nombre":"324234","Texto":"34234234","numSer":"234234","estado":null,"prioridad":"media"}
+{"Nombre":"w34234","Texto":"2342343","numSer":"23234","estado":"inactivo","prioridad":"alta"}
+{"Nombre":"23423","Texto":"234234","numSer":"234234","estado":"inactivo","prioridad":"media"}
+{"Nombre":"4534","Texto":"345345","numSer":"345","estado":"on","prioridad":"media"}
+{"Nombre":"32423","Texto":"234234","numSer":"23423","estado":"activo","prioridad":"media"}
+{"Nombre":"342345","Texto":"34534534","numSer":"34534","estado":"inactivo","prioridad":"media"}
+{"Nombre":"234","Texto":"234","numSer":"234","estado":"inactivo","prioridad":"alta"}
