@@ -86,18 +86,21 @@ function Borrar(i){
     id_lin.remove();
 }
 
+    
 function buscar(){
+    
     const searchText = document.getElementById('searchTerm').value.toLowerCase().trim();
     if (searchText.length >= 3) {
-        let resul = document.getElementById("resul");
-        let table = document.getElementById("table");
-        while (resul.firstChild) {
-            table.appendChild(resul.firstChild);
-        }
+        
+        
+       
         for(let i = 0; i<elementos.length; i++){
-            if(searchText == elementos[i].nombre.toLowerCase() || searchText  == elementos[i].texto.toLowerCase() || searchText == elementos[i].num_ser || searchText ==  elementos[i].prioridad ){
-                let tr = document.getElementById(i);
-                resul.appendChild(tr);
+            let table = document.getElementById("table");
+            let tr = document.getElementById(i);
+            if(elementos[i].nombre.toLocaleLowerCase().includes(searchText) || elementos[i].texto.toLocaleLowerCase().includes(searchText)){
+                tr.style.backgroundColor="#dddddd";
+            }else{
+                tr.style.backgroundColor="#23232300";
             }
         }
     }

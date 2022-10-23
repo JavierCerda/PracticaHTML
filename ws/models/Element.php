@@ -122,18 +122,18 @@ class Element implements iToJson{
 	 */
 	function toJson() {
         
-    $arr = array(
-        'Nombre' => $this -> nombre,
-        'Texto' => $this -> texto,
-        'numSer' => $this -> numSer,
-        'estado' => $this-> estado,
-        'prioridad' => $this-> prioridad
-    );
-    $texArray = json_encode($arr);
-    $abrir = fopen("../doc/doc.txt", "a");
-    fwrite($abrir, $texArray . PHP_EOL);
-    fclose($abrir);
-    echo $texArray;
+        $arr = array(
+            'Nombre' => $this -> nombre,
+            'Texto' => $this -> texto,
+            'numSer' => $this -> numSer,
+            'estado' => $this-> estado,
+            'prioridad' => $this-> prioridad
+        );
+        $texArray = json_encode($arr);
+        $abrir = fopen("../doc/doc.txt", "a");
+        fwrite($abrir, $texArray . PHP_EOL);
+        fclose($abrir);
+        echo $texArray;
 	}
 }
 
