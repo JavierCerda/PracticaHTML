@@ -90,18 +90,19 @@ function Borrar(i){
 function buscar(){
     
     const searchText = document.getElementById('searchTerm').value.toLowerCase().trim();
-    if (searchText.length >= 3) {
-        
-        
        
-        for(let i = 0; i<elementos.length; i++){
-            let table = document.getElementById("table");
-            let tr = document.getElementById(i);
+    for(let i = 0; i<elementos.length; i++){
+        let table = document.getElementById("table");
+        let tr = document.getElementById(i);
+        if (searchText.length >= 3) {
             if(elementos[i].nombre.toLocaleLowerCase().includes(searchText) || elementos[i].texto.toLocaleLowerCase().includes(searchText)){
-                tr.style.backgroundColor="#dddddd";
+                tr.style.backgroundColor="#dddddd6f";
             }else{
                 tr.style.backgroundColor="#23232300";
             }
+        }else{
+            tr.style.backgroundColor="#23232300";
         }
     }
+
 }
