@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOJA 1</title>
     <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/css-hoja1.css">
 </head>
 <body>
     <header>
         <div id="he1">
-            <h1>Industrial technology</h1>
-            <h2>Enlaces a nuestras páginas</h2>
+            <p>Industrial technology<p>
+           
         </div>
         
         
@@ -28,35 +29,40 @@
         </div>    
     </header>
     <main>
-        <h1>Formulario</h1>
-        <form action="./ws/createElement.php" method="post">
+        <div id="padre">
             <div>
-                <p>Nombre: <input type="text" name="nombre"  ></p>
+                <h1>Formulario</h1>
+                <form action="./ws/createElement.php" method="post">
+                    <div>
+                        <p><input type="text" placeholder="Nombre" name="nombre"  ></p>
+                    </div>
+                    <div>
+                        <p><textarea name="texto" rows="4" cols="22" placeholder="Descripción del producto"></textarea></p>
+                    </div>
+                    <div>
+                        <p><input type="number" placeholder="Numero de serie" name="num_ser" ></p>
+                    </div>
+                    <div>
+                        <p>Estado (Solo1):</p>
+                        <p><input type="checkbox" name="activo"> activo</p>
+                    </div>
+                    <div>
+                        <p>Prioridad (Solo1) :</p>
+                        <input type="radio" id="alta" name="prioridad" value="alta" />
+                        <label for="alta">alta</label>
+                    
+                        <input type="radio" id="media" name="prioridad" value="media" />
+                        <label for="media">media</label>
+                    
+                        <input type="radio" id="baja" name="prioridad" value="baja" />
+                        <label for="baja">baja</label>
+                    </div>
+                    <input class="bot" type="submit" value="Enviar datos">
+                    <input  class="bot" type="reset" value="Borrar">
+                </form>
             </div>
-            <div>
-                <p><textarea name="texto" rows="4" cols="20" placeholder="Descripción del producto"></textarea></p>
-            </div>
-            <div>
-                <p>Numero de serie: <input type="number" name="num_ser" size="50"></p>
-            </div>
-            <div>
-                <p>Estado (Solo1):</p>
-                <p><input type="checkbox" name="activo"> activo</p>
-            </div>
-            <div>
-                <p>Prioridad (Solo1) :</p>
-                <input type="radio" id="alta" name="prioridad" value="alta" />
-                <label for="alta">alta</label>
-            
-                <input type="radio" id="media" name="prioridad" value="media" />
-                <label for="media">media</label>
-            
-                <input type="radio" id="baja" name="prioridad" value="baja" />
-                <label for="baja">baja</label>
-            </div>
-            <input type="submit" value="Enviar datos">
-            <input type="reset" value="Borrar">
-        </form>
+    
+        </div>
     </main>
     <footer>
         <address>

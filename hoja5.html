@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOJA 5</title>
     <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/css-hoja5.css">
 </head>
 <body>
     <header>
         <div id="he1">
-            <h1>Industrial technology</h1>
-            <h2>Enlaces a nuestras páginas</h2>
+            <p>Industrial technology<p>
+           
         </div>
         
         
@@ -28,13 +29,20 @@
         </div>    
     </header>
     <main>
-        <h3>Trabaja con nosotros</h3>
-        <p>Correo electronico: <input type="text" name="correo" size="40"></p>
-        <p>Teléfono: <input type="number" name="tlf" size="50"></p>
-        <p>envíanos tu curriculum <input type="file" name="curriculum" accept=".pdf"></p>
-        <input type="submit" value="Enviar datos">
-        <input type="reset" value="Borrar">
-
+        <div id="padre">
+            <div id="hijo">
+                <h2>Trabaja con nosotros</h2>
+                <p><input type="text" placeholder="Correo electronico:" name="correo"></p>
+                <p> <input type="number" placeholder="Teléfono:" name="tlf"></p>
+                <p>Envíanos tu curriculum <input type="file" name="curriculum" accept=".pdf"></p>
+                <input type="submit" value="Enviar datos">
+                <input type="reset" value="Borrar">
+            </div>
+            
+            <div>
+                <img src="./img/Captura-1.jpg" alt="" > 
+            </div>
+        </div>
     </main>
     <footer>
         <address>

@@ -1,0 +1,40 @@
+
+header p{
+    color: aliceblue;
+}
+main h2{
+    font-size: 40px;
+    -webkit-text-stroke: 2px black;
+    color: #1fdaff;
+}
+main{
+    color: aliceblue;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
+table{
+    text-align: center;
+    background-color: #ff91009c;
+    border: none;
+}
+table h3{
+    color: #1fdaff;
+    margin: 10px;
+}
+table a{
+    color: #11ff00;   
+}
+a :hover{
+    color: aliceblue;
+}
+footer {
+    background-color: rgba(255, 119, 0, 0.797);
+    position: absolute;
+    top: 110%;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: white;
+    text-align: center;
+}

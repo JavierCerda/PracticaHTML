@@ -7,12 +7,13 @@
     <title>HOJA 2</title>
     <script type="text/javascript" src="./js/funciones.js"></script>
     <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/css-hoja2.css">
 </head>
 <body>
     <header>
         <div id="he1">
-            <h1>Industrial technology</h1>
-            <h2>Enlaces a nuestras páginas</h2>
+            <p>Industrial technology<p>
+           
         </div>
         
         
@@ -29,14 +30,18 @@
         </div>    
     </header>
     <main>
-        <input id="searchTerm" type="text" onkeyup="buscar()"/>
+      <div id="padre">
+        <div>
+            <h2>Buscador:</h2>
+            <input id="searchTerm" type="text" onkeyup="buscar()"/>
+        </div>
+        
         </br>
         </br>
-        <table border="5" id="table">
-        </table>
-    </br>
-    </br>
-    
+        <div>    
+            <table border="1" id="table"></table>
+        </div>
+      </div>
     </main>
     <footer>
         <address>
