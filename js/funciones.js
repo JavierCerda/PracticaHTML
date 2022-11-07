@@ -31,19 +31,24 @@ function rellenarTabla(table) {
         let tdPrioridad = document.createElement('td');
         let tdBorrar = document.createElement('td');
         let boton = document.createElement('button');
-    
+        let boton_ed = document.createElement('button');
+
         //Le doy un valor a las celdas
         tdNombre.innerHTML = elemento.nombre;
         tdDescripcion.innerHTML = elemento.texto;
         tdSerie.innerHTML = elemento.num_ser;
         tdActivo.innerHTML = elemento.activo;
         tdPrioridad.innerHTML = elemento.prioridad;
-        
+
+        boton_ed.innerHTML = "Editar";
         boton.innerHTML = " <img class='img'  src=\"./img/el.png\"/>";
         boton.onclick = function () {
             Borrar(i)
         };
-        tdBorrar.appendChild(boton)
+        boton_ed.onclick = function () {
+            edita(i)
+        };
+        tdBorrar.appendChild(boton);
         //Añado al tr los td
         tr.appendChild(tdNombre);
         tr.appendChild(tdDescripcion);
@@ -51,6 +56,7 @@ function rellenarTabla(table) {
         tr.appendChild(tdActivo);
         tr.appendChild(tdPrioridad);
         tr.appendChild(tdBorrar);
+        tr.appendChild(boton_ed);
         //Añado a la tabla el tr
         table.appendChild(tr);
     }
@@ -105,3 +111,19 @@ function buscar(){
     }
 
 }
+
+function edita(i) {
+    
+    
+    let celda = document.getElementById(i);
+    for(j=0;j<5;j++){
+    celda1 = celda.getElementsByTagName('td')[j];
+    txt = celda1.innerHTML;
+    celda1.innerHTML = '';
+    inp = celda1.appendChild(document.createElement('input'));
+    inp.value=txt;
+    inp.onblur = function() { this.parentNode.innerHTML = this.value  }
+    }
+}
+    
+  

@@ -1,6 +1,7 @@
 <?php 
 include("./interfaces/IToJson.php");
-
+include_once __DIR__ .("./conectarConBD.php");
+include_once  __DIR__ .("./respuesta.php");
 class Element implements iToJson{
 
     private $nombre;
@@ -130,11 +131,37 @@ class Element implements iToJson{
             'prioridad' => $this-> prioridad
         );
         $texArray = json_encode($arr);
-        $abrir = fopen("../doc/doc.txt", "a");
+        /*$abrir = fopen("../doc/doc.txt", "a");
         fwrite($abrir, $texArray . PHP_EOL);
         fclose($abrir);
-        echo $texArray;
+        echo $texArray;*/
 	}
+
+
+
+
+    public function deleteElement($id){
+        $response = new Response(true , "", null);
+        $conexion = Conexion::getInstance();//Hueco
+        $cnn = $conexion->getConexion();//La conexion del hueco
+        $sql = "DELETE FROM elementos WHERE id =?";//Consulta
+        $stmt = $cnn->prepare($sql);//Obtengo un hueco en ese hueco para mi uso
+        $stmt->bindParam(1, $id);//Le pongo al primer ? el valor que le pase
+        $rows = $stmt->execute(); //Ejecuto la consulta
+        if ($rows > 0) {//Si el resultado es positivo
+            $response->setSuccess(true); //A eliminado
+            $response->setMessage("Usuario con el id " . $id . " ha sido borrado");
+            $response->setData($this->toJson());
+        } else {
+            //No ha eliminado
+            $response->setMessage("Usuario con el id " . $id . " no ha sido borrado");
+            $response->setData(null);
+        }
+        print_r($rows);
+        return;
+        $cnn = null; //Cierro mi conexion al hueco
+        return $response->toJson();
+    }
 }
 
 

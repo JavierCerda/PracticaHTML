@@ -12,3 +12,12 @@
 {"Nombre":"234","Texto":"234","numSer":"234","estado":"inactivo","prioridad":"alta"}
 {"Nombre":"wefwerwerew","Texto":"ewrwer","numSer":"32423432","estado":"activo","prioridad":"media"}
 {"Nombre":"wefwerwerew","Texto":"ewrwer","numSer":"32423432","estado":"inactivo","prioridad":"media"}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
+{"Nombre":"","Texto":"","numSer":"","estado":"","prioridad":""}
