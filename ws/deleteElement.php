@@ -1,15 +1,17 @@
 <?php 
 
-require_once ("./models/Element.php");
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$id = $_GET['id'] ?? "";
-$newUser = new Element("", "", "", "", "");
+require_once __DIR__ ."/models/Element.php";
 
-if ($id !== "") {
-    echo $newUser->deleteElement($id);
-}
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
+$texto = isset($_POST['texto']) ? $_POST['texto'] : null;
+$num_ser = isset($_POST['num_ser']) ? $_POST['num_ser'] : null;
+$activo = isset($_POST['activo']) ? $_POST['activo'] : null;
+$prioridad = isset($_POST['prioridad']) ? $_POST['prioridad'] : null;
 
+$element = null;
+//si esta definido hace 1
+$element = Element::deleteElement($id, $nombre, $texto, $num_ser, $activo ,$prioridad);
+echo($element);
 
 ?>

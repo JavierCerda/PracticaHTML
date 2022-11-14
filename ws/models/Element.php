@@ -1,14 +1,16 @@
 <?php 
 include("./interfaces/IToJson.php");
-include_once __DIR__ .("./conectarConBD.php");
 include_once  __DIR__ .("./respuesta.php");
-class Element implements iToJson{
+require_once __DIR__ ."/Conectar.php";
+
+class Element extends Conectar implements iToJson{
 
     private $nombre;
     private $texto;
     private $numSer;
     private $estado;
     private $prioridad;
+    private static $conexion;
     
     function __construct($nombre, $text, $numSer, $estado, $prioridad) {
         $this->nombre = $nombre;
@@ -130,7 +132,7 @@ class Element implements iToJson{
             'estado' => $this-> estado,
             'prioridad' => $this-> prioridad
         );
-        $texArray = json_encode($arr);
+        return json_encode($arr);
         /*$abrir = fopen("../doc/doc.txt", "a");
         fwrite($abrir, $texArray . PHP_EOL);
         fclose($abrir);
@@ -138,32 +140,135 @@ class Element implements iToJson{
 	}
 
 
-
-
-    public function deleteElement($id){
-        $response = new Response(true , "", null);
-        $conexion = Conexion::getInstance();//Hueco
-        $cnn = $conexion->getConexion();//La conexion del hueco
-        $sql = "DELETE FROM elementos WHERE id =?";//Consulta
-        $stmt = $cnn->prepare($sql);//Obtengo un hueco en ese hueco para mi uso
-        $stmt->bindParam(1, $id);//Le pongo al primer ? el valor que le pase
-        $rows = $stmt->execute(); //Ejecuto la consulta
-        if ($rows > 0) {//Si el resultado es positivo
-            $response->setSuccess(true); //A eliminado
-            $response->setMessage("Usuario con el id " . $id . " ha sido borrado");
-            $response->setData($this->toJson());
-        } else {
-            //No ha eliminado
-            $response->setMessage("Usuario con el id " . $id . " no ha sido borrado");
-            $response->setData(null);
-        }
-        print_r($rows);
-        return;
-        $cnn = null; //Cierro mi conexion al hueco
-        return $response->toJson();
+    public static function crearCon(){
+        self::$conexion = new Conectar();
+        self::$conexion = self::$conexion->db;
     }
-}
 
+    public static function getElemento($id){
+        try{
+            if ($id != null && is_numeric($id) && $id > 0) {
+                $pp = new Conectar;
+                $baz = $pp->conectar();
+                $dato = $baz->query("SELECT * FROM elementos WHERE id=$id");
+                if ($dato->rowCount() == 0) {
+                    return self::menss(false,"El elemento con id $id no existe",null);
+                }
+                $resultado = $baz->query("SELECT * FROM `elementos` WHERE `id`=$id");
+                $arrRes = $resultado->fetchAll(PDO::FETCH_ASSOC);
+                return self::menss(true,"Estos son los elementos obtenidos",$arrRes);
+            }
+            return self::menss(false,"Introduce un id valido",null);
+        }catch(PDOException $e){
+            return self::menss(false,"ha fallado el modificar element", null);     
+        }
+    }
+    public static function getElementos(){
+        try{
+            $pp = new Conectar;
+            $baz = $pp->conectar();
+            $dato = $baz->query("SELECT * FROM elementos");
+            if ($dato->rowCount() == 0) {
+                return self::menss(false,"no hay ningun elemento",null);
+            }
+            $resultado = $baz->query("SELECT * FROM elementos");
+            $arrRes = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            return self::menss(true,"Estos son los elementos encontrados",$arrRes);
+        }catch(PDOException $e){
+            return self::menss(false,"ha fallado el get elements", null);
+        }
+    }
+
+    public static function deleteElement($id, $nombre, $texto, $num_ser, $activo, $prioridad){
+        try{
+            if ($id != null && is_numeric($id) && $id > 0) {
+                $pp = new Conectar;
+                $baz = $pp->conectar();
+                $dato = $baz->query("SELECT * FROM elementos WHERE id=$id");
+                if ($dato->rowCount() == 0) {
+                    return self::menss(false,"El elemento con id $id no existe",null);
+                }
+                $baz->exec("DELETE FROM `elementos` WHERE `id`=$id");
+                $fin = new Element($nombre, $texto, $num_ser, $activo, $prioridad);
+                return self::menss(true,"El elemento está eliminado", json_decode($fin->toJson()));
+            }
+            return self::menss(false,"Introduce un id valido",null); 
+        }catch(PDOException $e){
+            return self::menss(false,"ha fallado el delete element", null);
+        }
+    }
+
+    public static function modificarElemento($id, $nombre, $texto, $num_ser, $activo ,$prioridad){
+        try{
+            
+            if ($id != null && is_numeric($id) && $id > 0) {
+                $pp = new Conectar;
+                $baz = $pp->conectar();
+                $dato = $baz->query("SELECT * FROM elementos WHERE id=$id");
+                if ($dato->rowCount() == 0) {
+                    return self::menss(false,"El elemento con id $id no existe" ,null);
+                }
+                if ($nombre != null && $texto != null && $num_ser != null && $activo != null && $prioridad != null) {
+                    $consulta = "UPDATE elementos SET ";
+                    $condicion = " WHERE id = '$id'";
+                    $coma = "";
+                    if ($nombre != null) {
+                        $consulta .= $coma . " nombre = '$nombre'";
+                        $coma = ",";
+                    }
+                    if ($texto != null) {
+                        $consulta .= $coma . " descripcion = '$texto'";
+                        $coma = ",";
+                    }
+                    if ($num_ser != null) {
+                        $consulta .= $coma . " nserie = '$num_ser'";
+                        $coma = ",";
+                    }
+                    if ($activo != null) {
+                        $consulta .= $coma . " estado = '$activo'";
+                        $coma = ",";
+                    }
+                    if ($prioridad != null) {
+                        $consulta .= $coma . " prioridad = '$prioridad'";
+                        $coma = ",";
+                    }
+                    $consulta .= $condicion;
+                    $baz->exec($consulta);
+                    $fin = new Element($nombre, $texto, $num_ser, $activo, $prioridad);
+                    return self::menss(true,"El elemento está modificado ", json_decode($fin->toJson()));
+                }
+                return self::menss(false,"Tienes que introducir todos los valores",null); 
+            }
+            return self::menss(false,"Introduce un id valido",null);
+            
+        }catch(PDOException $e){
+            return self::menss(false,"ha fallado el modificar element", null);
+        }
+    }
+    public static function crearElemento($id, $nombre, $texto, $num_ser, $activo ,$prioridad){
+        try{  
+
+            $pp = new Conectar;
+            $baz = $pp->conectar();
+            $consulta = "INSERT INTO elementos (id ,nombre, descripcion, nserie, estado, prioridad) VALUES ('$id','$nombre','$texto','$num_ser','$activo','$prioridad')";
+            $baz->exec($consulta);                
+            $fin = new Element($nombre, $texto, $num_ser, $activo, $prioridad);
+            return self::menss(true,"El elemento está creado ", json_decode($fin->toJson()));
+
+        }catch(PDOException $e){
+            return self::menss(false,"ha fallado el create element", null);
+        }
+    }
+    public static function menss($succ, $mess,  $data ){
+        $arr = array(
+            'success' => $succ,
+            'message' => $mess,
+            'data' => $data
+        );
+        $texArray = json_encode($arr);
+        return $texArray;
+    }  
+}
 
 
 ?>
