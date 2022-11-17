@@ -32,7 +32,7 @@ function rellenarTabla(table) {
         let tdBorrar = document.createElement('td');
         let boton = document.createElement('button');
         let boton_ed = document.createElement('button');
-
+        let boton_guar = document.createElement('button');
         //Le doy un valor a las celdas
         tdNombre.innerHTML = elemento.nombre;
         tdDescripcion.innerHTML = elemento.texto;
@@ -41,12 +41,23 @@ function rellenarTabla(table) {
         tdPrioridad.innerHTML = elemento.prioridad;
 
         boton_ed.innerHTML = "Editar";
+        boton_guar.innerHTML = "Guardar";
+        boton_guar.hidden=true;
         boton.innerHTML = " <img class='img'  src=\"./img/el.png\"/>";
         boton.onclick = function () {
-            Borrar(i)
+            Borrar(i);
         };
         boton_ed.onclick = function () {
-            edita(i)
+            edita(i);
+            //esto es para ocultar el boton editar y mostrar el guardar
+            boton_ed.hidden=true;
+            boton_guar.hidden=false;
+        };
+        boton_guar.onclick = function () {
+            guarda(i);
+            //esto es para ocultar el boton editar y mostrar el guardar
+            boton_guar.hidden=true;
+            boton_ed.hidden=false;
         };
         tdBorrar.appendChild(boton);
         //Añado al tr los td
@@ -57,6 +68,7 @@ function rellenarTabla(table) {
         tr.appendChild(tdPrioridad);
         tr.appendChild(tdBorrar);
         tr.appendChild(boton_ed);
+        tr.appendChild(boton_guar);
         //Añado a la tabla el tr
         table.appendChild(tr);
     }
@@ -113,16 +125,32 @@ function buscar(){
 }
 
 function edita(i) {
-    
-    
     let celda = document.getElementById(i);
     for(j=0;j<5;j++){
-    celda1 = celda.getElementsByTagName('td')[j];
-    txt = celda1.innerHTML;
-    celda1.innerHTML = '';
-    inp = celda1.appendChild(document.createElement('input'));
+    let celdaj = celda.getElementsByTagName('td')[j];
+    txt = celdaj.innerHTML;
+    celdaj.innerHTML = '';
+    inp = celdaj.appendChild(document.createElement('input'));
     inp.value=txt;
-    inp.onblur = function() { this.parentNode.innerHTML = this.value  }
+    }
+}
+function guarda(i) {
+    let celda = document.getElementById(i);
+    for(j=0;j<5;j++){
+    let celdaj = celda.getElementsByTagName('td')[j];
+    let inputj = celda.getElementsByTagName('td')[j].firstChild;
+    txt = inputj.value;
+    celdaj.innerHTML = txt;
+    inputj.remove;
+    }
+    let count = 0;
+    for(let key in elementos[i]) {
+        if (key == 'num_ser' || key == 'activo') {
+            elementos[i][key] = +celda.getElementsByTagName('td')[count].innerHTML;
+        } else {
+            elementos[i][key] = celda.getElementsByTagName('td')[count].innerHTML;
+        }
+        count ++;
     }
 }
     
