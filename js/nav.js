@@ -4,7 +4,7 @@ window.onload = function (){
 function nav() {
     //con esto primero lo que hacemos es un fetch para coger
     //los datos de la pag nav.html y se lo metemos dentro de los nav
-    fetch("http://localhost/PracticaHTML/nav.html")
+    fetch('nav.html')
     .then(response => response.text())
     .then((response) => {
         console.log(response);
