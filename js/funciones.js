@@ -223,51 +223,51 @@ function Crear() {
                     'Tienes que introducir al menos el nombre',
                     'error'
                 )
-            }else{
-            //comprobamos el estado
-            if (document.getElementById("est").checked) {
-                est = "activado";
             } else {
-                est = "desactvado";
-            }
+                //comprobamos el estado
+                if (document.getElementById("est").checked) {
+                    est = "activado";
+                } else {
+                    est = "desactvado";
+                }
 
-            //comprobamos la prioridad
-            if (document.getElementById("alta").checked) {
-                prioridad = "alta";
-            } else {
-                if (document.getElementById("media").checked) {
-                    prioridad = "media";
+                //comprobamos la prioridad
+                if (document.getElementById("alta").checked) {
+                    prioridad = "alta";
                 } else {
                     if (document.getElementById("media").checked) {
-                        prioridad = "baja";
+                        prioridad = "media";
+                    } else {
+                        if (document.getElementById("media").checked) {
+                            prioridad = "baja";
+                        }
                     }
                 }
-            }
-            let fromDat = new FormData();
-            fromDat.append('nombre', nom);
-            fromDat.append('texto', des);
-            fromDat.append('num_ser', nums);
-            fromDat.append('activo', est);
-            fromDat.append('prioridad', prioridad);
-            fetch("ws/createElement2.php", {
-                method: "POST",
-                body: fromDat
-            })
-                .then((res) => {
-                    if (res.ok) {
-                        console.log("bien");
-                    } else {
-                        console.log("mal");
-                    }
-                    return res;
+                let fromDat = new FormData();
+                fromDat.append('nombre', nom);
+                fromDat.append('texto', des);
+                fromDat.append('num_ser', nums);
+                fromDat.append('activo', est);
+                fromDat.append('prioridad', prioridad);
+                fetch("ws/createElement2.php", {
+                    method: "POST",
+                    body: fromDat
                 })
+                    .then((res) => {
+                        if (res.ok) {
+                            console.log("bien");
+                        } else {
+                            console.log("mal");
+                        }
+                        return res;
+                    })
                 swalWithBootstrapButtons.fire(
                     'Creado!',
-                    'tu usuario con nombre '+nom+' ha sido creado',
+                    'tu usuario con nombre ' + nom + ' ha sido creado',
                     'success'
                 )
-                .then((res) => res.json())
-        }
+                    .then((res) => res.json())
+            }
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
