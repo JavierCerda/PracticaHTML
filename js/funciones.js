@@ -217,13 +217,13 @@ function Crear() {
             let nums = document.getElementById("nums").value;
             let est;
             let prioridad;
-            if (nom == null) {
+            if (nom == null || nom == "" || nom.length == 0) {
                 swalWithBootstrapButtons.fire(
-                    'Creado!',
-                    'El usuario se ha creado',
-                    'success'
+                    'no creado!',
+                    'Tienes que introducir al menos el nombre',
+                    'error'
                 )
-            }
+            }else{
             //comprobamos el estado
             if (document.getElementById("est").checked) {
                 est = "activado";
@@ -261,7 +261,13 @@ function Crear() {
                     }
                     return res;
                 })
+                swalWithBootstrapButtons.fire(
+                    'Creado!',
+                    'tu usuario con nombre '+nom+' ha sido creado',
+                    'success'
+                )
                 .then((res) => res.json())
+        }
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
