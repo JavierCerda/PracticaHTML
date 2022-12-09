@@ -9,6 +9,8 @@ $activo = isset($_POST['activo']) ? $_POST['activo'] : null;
 $prioridad = isset($_POST['prioridad']) ? $_POST['prioridad'] : null;
 
 $element = null;
+echo $_POST['nombre'];
+echo $nombre;
 //si esta definido hace 1
 $element = Element::crearElemento($id, $nombre, $texto, $num_ser, $activo ,$prioridad);
 echo($element);
